@@ -1,0 +1,74 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <parent>
+        <groupId>com.clearspring.common.build.maven.pom</groupId>
+        <artifactId>jar-pom</artifactId>
+        <version>1.0.1</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.xiano</groupId>
+    <artifactId>webdriver</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <build>
+        <testSourceDirectory>${basedir}/src</testSourceDirectory>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <properties>
+                        <property>
+                            <name>listener</name>
+                            <value>org.testng.reporters.DotTestListener</value>
+                        </property>
+                    </properties>
+                    <systemPropertyVariables>
+                        <env>${env}</env>
+                        <driver>${driver}</driver>
+                        <closep>true</closep>
+                        <proxyp>{proxyp}</proxyp>
+                    </systemPropertyVariables>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.1.1</version>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>findbugs-maven-plugin</artifactId>
+                <version>2.3.1</version>
+                <configuration>
+                    <effort>Max</effort>
+                </configuration>
+            </plugin>
+        </plugins>
+        </build>
+
+  <dependencies>
+    <!-- http://nexus.openqa.org/content/repositories/releases/org/seleniumhq/selenium/ -->
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium</artifactId>
+      <version>2.0a5</version>
+    </dependency>
+    <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+      <version>5.8</version>
+      <classifier>jdk15</classifier>
+    </dependency>
+  </dependencies>
+</project>
